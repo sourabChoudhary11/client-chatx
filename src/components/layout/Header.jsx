@@ -65,7 +65,7 @@ const Header = () => {
     return (
         <>
             <header className='flex justify-between items-center h-[4rem] bg-purple-700'>
-                <Link to={"/"} className='text-white hidden xs:block font-medium xs:text-xl md:text-2xl p-[1rem]' >ChatKarle</Link>
+                <Link to={"/"} className='text-white hidden xs:block font-medium xs:text-xl md:text-2xl p-[1rem]' >ChatX</Link>
                 <RxHamburgerMenu className='ml-3 text-white text-xl block xs:hidden cursor-pointer hover:opacity-70' onClick={handleMobileOpen} />
                 <div className="flex items-center space-x-3 px-8">
                     <Icon IconName={FaSearch} onClick={searchHandler} />
