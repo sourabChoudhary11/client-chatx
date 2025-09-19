@@ -1,0 +1,19 @@
+@layer theme, base, utilities;
+
+@theme {
+  --breakpoint-xs: 30rem;
+}
+
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+
+input::placeholder {
+  color: rgb(164, 164, 164);
+}
+
+input {
+  outline: none;
+}
