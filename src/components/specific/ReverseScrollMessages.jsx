@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useLazyGetMessagesQuery } from "../../store/api/api.js";
 import Message from "../shared/Message";
@@ -33,11 +33,15 @@ const ReverseWindowScrollDemo = ({ chatId, user, messages, setMessages, page, se
   useEffect(() => {
     ref.current.scrollTop = ref.current.scrollHeight - ref.current.scrollTop;
   }, [messages]);
+  
+  useEffect(()=>{
+    ref.current.scrollTop = ref.current.scrollHeight;
+  }, [])
 
   return (
     <div
       ref={ref}
-      className="grow relative flex flex-col space-y-1 mb-2 overflow-y-auto"
+      className="grow relative flex flex-col space-y-1 mb-2 overflow-y-auto scroll-[smooth]"
     >
      {
       hasNextPage &&  <div ref={sentryRef} className="h-[2rem]">Loading ......</div>
@@ -48,10 +52,8 @@ const ReverseWindowScrollDemo = ({ chatId, user, messages, setMessages, page, se
       ))}
 
       {
-        userTyping && <div  className='w-full flex  justify-center items-center animate-pulse space-x-1'>
-          <FaCircle className='animate-bounce delay-1000 text-xs text-gray-400' />
-          <FaCircle className='animate-bounce delay-[2s] text-xs text-gray-400' />
-          <FaCircle className='animate-bounce delay-200 text-xs text-gray-400' />
+        userTyping &&  <div  className='w-full flex  justify-center items-center space-x-1'>
+          <FaCircle className='animate-ping text-xs text-gray-400' />
         </div>
       }
       <div ref={typingLoaderRef} />

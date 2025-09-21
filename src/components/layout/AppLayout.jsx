@@ -61,12 +61,17 @@ const AppLayout = () => (WrapperComponent) => {
             navigate("/");
         }
 
-        const connectUsersListener = (data)=>{
-            setOnlineUsers(data);
+        const connectUsersListener = (connectUser)=>{
+            setOnlineUsers(prev=>[...prev,connectUser]);
+            socket.emit(ONLINE_USERS, user._id);
+        }
+
+        const onlineUsersListener = (onlineUser)=>{
+            setOnlineUsers(prev=>[...prev,onlineUser]);
         }
         
-        const offlineUsersListener = (data)=>{
-            setOnlineUsers(data);
+        const offlineUsersListener = (offlineUser)=>{
+            setOnlineUsers(prev=>prev.filter(u=>u!==offlineUser));
         }
 
         const handlers = {
@@ -74,6 +79,7 @@ const AppLayout = () => (WrapperComponent) => {
             [NEW_MESSAGE_ALERT]: newMessageAlertListener,
             [REFETCH_CHAT]: refetchListener,
             [CONNECT_USERS]: connectUsersListener,
+            [ONLINE_USERS]: onlineUsersListener,
             [OFFLINE_USERS]: offlineUsersListener
         }
 
@@ -88,7 +94,7 @@ const AppLayout = () => (WrapperComponent) => {
         },[newMessageAlert]);
 
         return <>
-            <Title />
+            <Title title="ChatX" />
             <Header />
             <DeleteChatMenu anchorEl={anchorRef} />
 

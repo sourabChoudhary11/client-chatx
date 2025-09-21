@@ -9,6 +9,7 @@ import { Link, Navigate, useLocation } from 'react-router-dom';
 import { adminNotExists } from '../../store/reducers/auth';
 import { server } from "../../constants/config";
 import toast from "react-hot-toast";
+import Title from "../shared/Title";
 
 
 
@@ -24,6 +25,7 @@ const AdminLayout = ({ children }) => {
 
     return (
         <div className='h-screen w-screen grid grid-cols-12'>
+            <Title title="ChatX - Admin" description="See the users, chats data with group chat, messages data" />
             <div className="hidden sm:block sm:col-span-4 lg:col-span-3">
                 <h1 className='text-3xl p-[2rem]'>ChatX</h1>
                 <Sidebar />

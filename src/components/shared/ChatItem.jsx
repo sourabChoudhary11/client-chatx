@@ -3,6 +3,8 @@ import { FaCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import AvatarCard from './AvatarCard'
 import { motion } from "framer-motion"
+import { useDispatch, useSelector } from 'react-redux'
+import { setIsMobile } from '../../store/reducers/misc'
 
 const ChatItem = ({
     avatar = [],
@@ -16,6 +18,7 @@ const ChatItem = ({
     handleDeleteChat
 }) => {
 
+    const dispatch= useDispatch();
     const contextHandler = (e) => {
         e.preventDefault();
         handleDeleteChat(e, _id, groupChat)
@@ -25,6 +28,7 @@ const ChatItem = ({
         onContextMenu={contextHandler}
         className='m-0'
         to={`/chat/${_id}`}
+        onClick={()=> dispatch(setIsMobile())}
     >
         <motion.div
             initial={{

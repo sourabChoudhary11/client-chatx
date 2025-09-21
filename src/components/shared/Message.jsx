@@ -13,13 +13,7 @@ const Message = ({message, user}) => {
   return sender.name==="Admin" ? <div className='self-center p-2 text-sm text-gray-500'>
     {content}
   </div>  : (
-    <motion.div
-        initial={{
-            x:"-100%"
-          }}
-        whileInView={{
-            x:0
-        }}
+    <div
      className={`w-fit rounded-sm flex flex-col ${sameSender?'self-end items-end':'self-start items-start'} bg-white p-2`}>
       {!sameSender && <span className='text-xs text-teal-800'>{sender.name}</span>}
 
@@ -41,7 +35,7 @@ const Message = ({message, user}) => {
       }
       </div>
       <span className='text-xs text-gray-400'>{timeAgo}</span>
-    </motion.div>
+    </div>
   )
 }
 

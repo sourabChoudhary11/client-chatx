@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGetAdminQuery, useLoginAdminMutation } from '../../store/api/api';
 import { useAsyncMutation } from '../../hooks/hook';
 import { adminExists } from "../../store/reducers/auth"
+import Title from '../../components/shared/Title';
 
 const AdminLogin = () => {
     const navigate = useNavigate();
@@ -34,6 +35,7 @@ const AdminLogin = () => {
 
     return !isLoading && (
         <div className='flex flex-col w-screen h-screen items-center justify-center bg-black text-white px-4 md:px-0'>
+            <Title title='ChatX - Admin Login' description="Admin dashboard to analyze the data" />
 
             <h1 className=' text-purple-600 text-4xl mb-4'>
                 Admin Login

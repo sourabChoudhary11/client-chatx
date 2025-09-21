@@ -8,6 +8,7 @@ import authSlice from '../store/reducers/auth';
 import toast from 'react-hot-toast';
 import { useLoginUserMutation, useRegisterUserMutation } from '../store/api/api';
 import { useAsyncMutation } from '../hooks/hook';
+import Title from '../components/shared/Title';
 
 
 // login component includes signin and signup component
@@ -26,7 +27,6 @@ const Login = () => {
     const submitHandler = async (data) => {
         if (isLogin) {
             await loginUser("User Logging....", data);
-            navigate("/");
         } else {
             const { name, email, password, avatar, bio } = data;
             let formData = new FormData();
@@ -38,7 +38,6 @@ const Login = () => {
             formData.append("bio", bio);
 
             await registerUser("User Signing....", formData);
-            navigate("/");
         }
     }
     const toggleHandler = () => {
@@ -47,12 +46,19 @@ const Login = () => {
     }
 
     useEffect(()=>{
-        if(loginUserData) dispatch(userExists(loginUserData.user)); 
-        if(registerUserData) dispatch(userExists(registerUserData.user)); 
+        if(loginUserData) {
+            dispatch(userExists(loginUserData.user)); 
+            navigate("/");
+        }
+        if(registerUserData){
+            dispatch(userExists(registerUserData.user));
+            navigate("/");
+        } 
     }, [loginUserData, registerUserData])
 
     return (
         <div className={`flex flex-col w-screen h-screen items-center justify-center bg-black text-white px-4 md:px-0 ${ (loginUserLoading || registerUserLoading) ?  "cursor-not-allowed" : "cursor-default" }`}>
+            <Title title="ChatX - Login" description="Logging in to socialize with others with chatting with our amazing chat app" />
             <h1 className=' text-purple-600 text-4xl mb-4'>
                 {
                     isLogin ? "Sign In" : "Sign Up"
