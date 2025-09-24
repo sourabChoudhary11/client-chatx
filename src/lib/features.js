@@ -12,7 +12,7 @@ export const fileFormat = (url) => {
     return "file";
 }
 
-export const transformImage = (url,width=100)=>url;
+export const transformImage = (url,width=100)=>url.replace("upload", `upload/c_scale,w_${width}`);
 
 
 export const getLast7Days = ()=>{

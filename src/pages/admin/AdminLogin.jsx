@@ -30,7 +30,6 @@ const AdminLogin = () => {
             dispatch(adminExists(true))
             navigate("/admin/dashboard");
         }
-        console.log(data)
     },[data])
 
     return !isLoading && (

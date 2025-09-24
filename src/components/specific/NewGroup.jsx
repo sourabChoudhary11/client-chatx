@@ -1,13 +1,11 @@
-import React, { memo, useEffect, useState } from "react"
-import { users } from "../../constants/dummyData"
-import UserItem from "../shared/UserItem"
-import { useForm, useFieldArray } from "react-hook-form"
-import { setIsNewGroup } from "../../store/reducers/misc"
-import { useDispatch } from "react-redux"
+import { memo, useEffect } from "react"
+import { useFieldArray, useForm } from "react-hook-form"
 import { MdClose } from "react-icons/md"
-import { useMyFriendsQuery, useNewGroupMutation } from "../../store/api/api"
+import { useDispatch } from "react-redux"
 import { useAsyncMutation, useErrors } from "../../hooks/hook"
-import toast from "react-hot-toast"
+import { useMyFriendsQuery, useNewGroupMutation } from "../../store/api/api"
+import { setIsNewGroup } from "../../store/reducers/misc"
+import UserItem from "../shared/UserItem"
 
 const NewGroup = () => {
   const dispatch = useDispatch();

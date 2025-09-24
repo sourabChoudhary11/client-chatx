@@ -1,25 +1,22 @@
-import { lazy, memo, Suspense, useEffect, useReducer, useState } from 'react';
+import Avatar from '@mui/material/Avatar';
+import Drawer from "@mui/material/Drawer";
+import Skeleton from '@mui/material/Skeleton';
+import { lazy, memo, Suspense, useEffect, useState } from 'react';
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { MdDone, MdEdit } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { chats, users } from '../constants/dummyData';
-import AvatarCard from '../components/shared/AvatarCard';
-import UserItem from '../components/shared/UserItem';
-import { useAddMembersInGroupMutation, useChatDetailsQuery, useDeleteChatMutation, useMyGroupsQuery, useRemoveGroupMemberMutation, useRenameGroupMutation } from '../store/api/api';
-import { useAsyncMutation, useErrors } from '../hooks/hook'
-import Drawer from "@mui/material/Drawer"
-import Skeleton from '@mui/material/Skeleton';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsAddMember } from '../store/reducers/misc.js';
-import Avatar from '@mui/material/Avatar';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import AvatarCard from '../components/shared/AvatarCard';
 import Title from '../components/shared/Title.jsx';
+import UserItem from '../components/shared/UserItem';
+import { useAsyncMutation, useErrors } from '../hooks/hook';
+import { useAddMembersInGroupMutation, useChatDetailsQuery, useDeleteChatMutation, useMyGroupsQuery, useRemoveGroupMemberMutation, useRenameGroupMutation } from '../store/api/api';
+import { setIsAddMember } from '../store/reducers/misc.js';
 
 const ConfirmDeleteGroup = lazy(() => import('../components/dialogs/ConfirmDeleteGroup'));
 const AddMember = lazy(() => import('../components/dialogs/AddMember'));
 
-
-const isAddMember = false;
 
 const Groups = () => {
   const dispatch = useDispatch();

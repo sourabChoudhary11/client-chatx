@@ -1,21 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import axios from "axios";
-import { server } from '../constants/config';
 import { useNavigate } from 'react-router-dom';
-import authSlice from '../store/reducers/auth';
-import toast from 'react-hot-toast';
-import { useLoginUserMutation, useRegisterUserMutation } from '../store/api/api';
-import { useAsyncMutation } from '../hooks/hook';
 import Title from '../components/shared/Title';
+import { useAsyncMutation } from '../hooks/hook';
+import { useLoginUserMutation, useRegisterUserMutation } from '../store/api/api';
+import authSlice from '../store/reducers/auth';
 
 
 // login component includes signin and signup component
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { userExists, userNotExists } = authSlice.actions;
+    const { userExists } = authSlice.actions;
     const [loginUser, loginUserLoading, loginUserData] = useAsyncMutation(useLoginUserMutation);
     const [registerUser, registerUserLoading, registerUserData] = useAsyncMutation(useRegisterUserMutation);
 

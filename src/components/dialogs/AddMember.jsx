@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { users } from '../../constants/dummyData'
-import UserItem from '../shared/UserItem'
-import { MdClose } from 'react-icons/md';
-import { useAddMembersInGroupMutation, useMyFriendsQuery } from '../../store/api/api';
-import { useAsyncMutation, useErrors } from '../../hooks/hook';
-import { useDispatch } from 'react-redux';
-import { setIsAddMember } from '../../store/reducers/misc';
 import Skeleton from '@mui/material/Skeleton';
+import { useState } from 'react';
+import { MdClose } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { useErrors } from '../../hooks/hook';
+import { useMyFriendsQuery } from '../../store/api/api';
+import { setIsAddMember } from '../../store/reducers/misc';
+import UserItem from '../shared/UserItem';
 
 const AddMember = ({ addMember, isLoadingAddMember, chatId }) => {
 

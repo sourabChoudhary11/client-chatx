@@ -33,7 +33,7 @@ const App = () => {
         const res = await axios.get(`${server}/api/v1/user/profile`, {
           withCredentials: true
         })
-        console.log(res);
+        
         dispatch(userExists(res.data.user));
       } catch (error) {
         toast(error.response.data.message);

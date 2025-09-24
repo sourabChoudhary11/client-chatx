@@ -1,16 +1,22 @@
-import React, { memo, useEffect, useState } from 'react'
-import { TiTick } from "react-icons/ti";
+import Avatar from '@mui/material/Avatar';
+import Skeleton from '@mui/material/Skeleton';
+import { memo } from 'react';
 import { ImCross } from "react-icons/im";
 import { MdClose } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
-import { setIsNotification } from '../../store/reducers/misc';
-import { useAcceptFriendRequestMutation, useGetNotificationsQuery } from '../../store/api/api';
+import { TiTick } from "react-icons/ti";
+import { useDispatch, useSelector } from 'react-redux';
 import { useAsyncMutation, useErrors } from '../../hooks/hook';
-import Skeleton from '@mui/material/Skeleton';
+import { transformImage } from '../../lib/features';
+import { useAcceptFriendRequestMutation, useGetNotificationsQuery } from '../../store/api/api';
+import { setIsNotification } from '../../store/reducers/misc';
+import {getSocket} from "../../Socket"
+import { CONNECT_USERS } from '../../constants/event';
 
 const Notifications = () => {
 
   const dispatch = useDispatch();
+  const socket = getSocket();
+  const {user} = useSelector(state=>state.auth);
   const {data, isLoading, error, isError} = useGetNotificationsQuery();
 
   const [acceptFriendRequest] = useAsyncMutation(useAcceptFriendRequestMutation);
@@ -18,6 +24,8 @@ const Notifications = () => {
   const friendRequestHandler = async ({ _id, accept }) => {
     await acceptFriendRequest("",{ requestId:_id, accept });
     dispatch(setIsNotification(false));
+
+    if(accept && user._id) socket.emit(CONNECT_USERS, user._id);
   }
 
   const handleNotificationClose = () => {
@@ -58,8 +66,8 @@ const Notifications = () => {
 const NotificationItem = memo(({ sender, _id, handler }) => {
   return (
     <div className='bg-gray-300 rounded-md flex items-start my-1 p-2'>
+      <Avatar src={transformImage(sender.avatar)} />
 
-      <img className='min-w-[3rem] h-[3rem] object-cover border-2 border-white rounded-full' src={sender.avatar?.length > 0 ? sender.avatar : 'https://www.w3schools.com/html/img_girl.jpg'} />
       <div className='flex flex-col items-start px-4'>
 
         <p className='grow truncate text-left text-wrap'>

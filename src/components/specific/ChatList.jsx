@@ -13,8 +13,7 @@ const ChatList = ({
     ],
     handleDeleteChat
 }) => {
-
-  console.log("onlineUser",onlineUsers);
+  
   return (
     <div 
     style={{width: w}}>

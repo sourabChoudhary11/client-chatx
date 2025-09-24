@@ -1,5 +1,3 @@
-import React from 'react'
-
 const ConfirmDeleteGroup = ({openDialog,closeDialog, confirmDeletehandler}) => {
   return (
      <section className={`${openDialog?'block':'hidden'} absolute w-screen h-screen top-0 left-0 z-10 flex items-center justify-center text-white bg-[#000000bf]`}>

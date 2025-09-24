@@ -1,7 +1,6 @@
 import moment from 'moment';
 import { fileFormat } from '../../lib/features';
 import { RenderAttachment } from './RenderAttachment';
-import { motion } from 'framer-motion';
 
 const Message = ({message, user}) => {
 

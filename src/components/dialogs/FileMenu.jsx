@@ -32,7 +32,6 @@ const FileMenu = ({ anchorEl, chatId }) => {
 
     const fileChangeHandle = async (e, key) => {
         const files = Array.from(e.target.files);
-        console.log(files)
         if (files.length === 0) return;
         if (files.length > 5) return toast.error(`You can only send max 5 ${key} at once`);
         dispatch(setUploadingLoader(true));
@@ -44,10 +43,8 @@ const FileMenu = ({ anchorEl, chatId }) => {
             formData.append("chatId", chatId);
             files.forEach(file => formData.append("file", file));
             const res = await sendAttachments(formData);
-            console.log(res)
 
             if (res.data?.message) {
-                console.log(res.data.message)
                 toast.success(`${key} sent successfully`, { id: toastId })
             }else { 
                 toast.error(`Failed to send ${key}`, { id: toastId }) 

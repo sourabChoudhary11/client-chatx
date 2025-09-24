@@ -1,4 +1,3 @@
-import React from 'react'
 import { transformImage } from '../../lib/features'
 
 const AvatarCard = ({avatar}) => {

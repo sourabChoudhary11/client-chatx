@@ -2,16 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import { IoSend } from "react-icons/io5";
 import { MdAttachFile } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import FileMenu from '../components/dialogs/FileMenu.jsx';
 import AppLayout from '../components/layout/AppLayout';
 import ReverseScrollMessages from '../components/specific/ReverseScrollMessages.jsx';
-import { ALERT, NEW_MESSAGE, REFETCH_CHAT, START_TYPING, STOP_TYPING } from '../constants/event';
+import { ALERT, NEW_MESSAGE, START_TYPING, STOP_TYPING } from '../constants/event';
 import { useErrors, useSocketEvents } from '../hooks/hook';
 import { getSocket } from '../Socket';
 import { useChatDetailsQuery } from '../store/api/api.js';
 import { removeNewMessageAlert } from '../store/reducers/chat.js';
 import { setIsFileMenu } from '../store/reducers/misc.js';
-import { useNavigate } from 'react-router-dom';
 
 
 
@@ -95,16 +95,18 @@ const Chat = ({ chatId }) => {
   if (userTyping) typingLoaderRef.current.scrollIntoView();
 
 
-  const alertListener = (content) => {
-    const alertMessage = {
-      sender: {
-        _id: "kdsfjksdkfads234jj32k",
-        name: "Admin"
-      },
-      content,
-      createdAt: new Date().toISOString()
+  const alertListener = (data) => {
+    if(data.chatId===chatId){
+      const alertMessage = {
+        sender: {
+          _id: "kdsfjksdkfads234jj32k",
+          name: "Admin"
+        },
+        content: data.message,
+        createdAt: new Date().toISOString()
+      }
+      setMessages(prev => [...prev, alertMessage]);
     }
-    setMessages(prev => [...prev, alertMessage]);
   }
 
   const listeners = {

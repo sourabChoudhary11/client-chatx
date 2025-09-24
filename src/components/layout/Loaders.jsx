@@ -1,5 +1,4 @@
-import React from 'react'
-import { AiOutlineWechat } from 'react-icons/ai'
+import { AiOutlineWechat } from 'react-icons/ai';
 
 const AppLayoutLoader = () => {
     return (

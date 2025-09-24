@@ -23,7 +23,6 @@ const AppLayout = () => (WrapperComponent) => {
         const [onlineUsers,setOnlineUsers] = useState([]);
         const navigate = useNavigate();
         const socket = getSocket();
-        console.log(socket.id)
         const { chatId } = useParams();
         const dispatch = useDispatch();
         const anchorRef = useRef(null);
@@ -62,12 +61,18 @@ const AppLayout = () => (WrapperComponent) => {
         }
 
         const connectUsersListener = (connectUser)=>{
-            setOnlineUsers(prev=>[...prev,connectUser]);
+            const uniqueOnlineUsers = new Set(onlineUsers);
+            uniqueOnlineUsers.add(connectUser);
+            const usersArray = Array.from(uniqueOnlineUsers);
+            setOnlineUsers(usersArray);
             socket.emit(ONLINE_USERS, user._id);
         }
 
         const onlineUsersListener = (onlineUser)=>{
-            setOnlineUsers(prev=>[...prev,onlineUser]);
+            const uniqueOnlineUsers = new Set(onlineUsers);
+            uniqueOnlineUsers.add(onlineUser);
+            const usersArray = Array.from(uniqueOnlineUsers);
+            setOnlineUsers(usersArray);
         }
         
         const offlineUsersListener = (offlineUser)=>{
@@ -86,7 +91,10 @@ const AppLayout = () => (WrapperComponent) => {
         useSocketEvents(socket, handlers);
         
         useEffect(()=>{
-            if(user?._id) socket.emit(CONNECT_USERS, user._id);
+            if(user?._id) {
+                socket.emit(CONNECT_USERS, user._id)
+                console.log(user._id)
+            }
         },[user])
 
         useEffect(()=>{
@@ -99,7 +107,7 @@ const AppLayout = () => (WrapperComponent) => {
             <DeleteChatMenu anchorEl={anchorRef} />
 
             {
-                isLoading ? <Skeleton /> :
+               ( isMobile && isLoading) ? <Skeleton /> :
                     <Drawer open={isMobile} onClose={handleMobileClose}>
                         <ChatList w='70vw' chats={data?.chats} chatId={chatId} handleDeleteChat={handleDeleteChat} newMessagesAlert={newMessageAlert} onlineUsers={onlineUsers} />
                     </Drawer>

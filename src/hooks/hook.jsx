@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { NEW_MESSAGE } from "../constants/event";
 
 const useErrors = (errors = []) => {
     useEffect(() => {
@@ -58,6 +57,4 @@ const useSocketEvents = (socket, handlers) => {
     }, [socket, handlers])
 }
 
-export {
-    useErrors, useAsyncMutation, useSocketEvents
-}
+export { useAsyncMutation, useErrors, useSocketEvents };

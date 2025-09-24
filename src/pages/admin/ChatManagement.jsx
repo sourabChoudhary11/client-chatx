@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import AdminLayout from '../../components/layout/AdminLayout'
 import Table from '../../components/shared/Table'
-import { dashboardData } from '../../constants/dummyData';
 import AvatarCard from '../../components/shared/AvatarCard';
 import { useGetChatsStatsQuery } from '../../store/api/api';
 import Skeleton from '@mui/material/Skeleton';

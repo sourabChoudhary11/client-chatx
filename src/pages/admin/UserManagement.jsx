@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import AdminLayout from '../../components/layout/AdminLayout'
 import Table from '../../components/shared/Table'
 import Avatar from '@mui/material/Avatar';
-import { dashboardData } from '../../constants/dummyData';
 import { useErrors } from '../../hooks/hook';
 import { useGetUsersStatsQuery } from '../../store/api/api';
 import Skeleton from '@mui/material/Skeleton';
