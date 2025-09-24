@@ -13,8 +13,8 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { userExists } = authSlice.actions;
-    const [loginUser, loginUserData] = useAsyncMutation(useLoginUserMutation);
-    const [registerUser, registerUserData] = useAsyncMutation(useRegisterUserMutation);
+    const [loginUser, _, loginUserData] = useAsyncMutation(useLoginUserMutation);
+    const [registerUser, __, registerUserData] = useAsyncMutation(useRegisterUserMutation);
 
 
     const { register, handleSubmit, getValues, reset, formState: { errors } } = useForm();
