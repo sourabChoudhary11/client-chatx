@@ -81,6 +81,11 @@ const Chat = ({ chatId }) => {
 
   const newMessageListener = (data) => {
     if (data.message.chat === chatId) setMessages(prev => [...prev, data?.message]);
+    const container = scrollRef.current;
+    requestAnimationFrame(() => {
+      const newScrollHeight = container.scrollHeight;
+      scrollRef.current.scrollTop = newScrollHeight;
+    });
   }
 
   const startTypingListener = (data) => {
@@ -96,7 +101,7 @@ const Chat = ({ chatId }) => {
 
 
   const alertListener = (data) => {
-    if(data.chatId===chatId){
+    if (data.chatId === chatId) {
       const alertMessage = {
         sender: {
           _id: "kdsfjksdkfads234jj32k",
@@ -117,7 +122,7 @@ const Chat = ({ chatId }) => {
   }
 
   useSocketEvents(socket, listeners);
-  
+
   return (
     <div className='h-full flex flex-col justify-between -scroll-m-8'>
       <ReverseScrollMessages userTyping={userTyping} chatId={chatId} user={user} messages={messages} setMessages={setMessages} page={page} setPage={setPage} ref={scrollRef} typingLoaderRef={typingLoaderRef} />
