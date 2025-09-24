@@ -13,8 +13,8 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { userExists } = authSlice.actions;
-    const [loginUser, loginUserLoading, loginUserData] = useAsyncMutation(useLoginUserMutation);
-    const [registerUser, registerUserLoading, registerUserData] = useAsyncMutation(useRegisterUserMutation);
+    const [loginUser, loginUserData] = useAsyncMutation(useLoginUserMutation);
+    const [registerUser, registerUserData] = useAsyncMutation(useRegisterUserMutation);
 
 
     const { register, handleSubmit, getValues, reset, formState: { errors } } = useForm();
@@ -54,7 +54,7 @@ const Login = () => {
     }, [loginUserData, registerUserData])
 
     return (
-        <div className={`flex flex-col w-screen h-screen items-center justify-center bg-black text-white px-4 md:px-0 ${ (loginUserLoading || registerUserLoading) ?  "cursor-not-allowed" : "cursor-default" }`}>
+        <div className="flex flex-col w-screen h-screen items-center justify-center bg-black text-white px-4 md:px-0">
             <Title title="ChatX - Login" description="Logging in to socialize with others with chatting with our amazing chat app" />
             <h1 className=' text-purple-600 text-4xl mb-4'>
                 {
