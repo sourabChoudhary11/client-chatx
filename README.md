@@ -1,12 +1,58 @@
-# React + Vite
+# ChatX — Real-Time Chat Application (Client)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern real-time chat application built with **React and Socket.IO**, designed to deliver fast and responsive messaging experience.
 
-Currently, two official plugins are available:
+🔗 Live Demo: https://chatx-blond.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Key Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔹 **Real-time 1-on-1 and group messaging** using Socket.IO  
+- 🔹 Online/Offline status
+- 🔹 Typing Indicator
+- 🔹 Search people and also send friend request
+- 🔹 Create Group, rename group, add and remove members from group
+- 🔹 Responsive UI for both desktop and mobile
+
+---
+
+## 🧠 Tech Stack
+
+**Frontend:**  
+React, Vite, Redux, Socket.IO client
+
+**Backend:**  
+Node, Express, MongoDB, Socket.IO, cloudinary
+
+---
+
+## ⚙️ Installation (Local Setup)
+
+Make sure you have Node.js installed.
+
+1. Clone this repo
+
+git clone https://github.com/sourabChoudhary11/client-chatx.git
+
+
+2. Install dependencies
+
+cd client-chatx
+npm install
+
+
+3. Setup environment variables
+
+Create a .env file with your backend server URL:
+VITE_SERVER_URL = http://localhost:backend_port
+
+
+5. Run the app
+
+npm run dev
+
+
+5. Open in browser
+
+http://localhost:5173
