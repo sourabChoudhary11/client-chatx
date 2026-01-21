@@ -45,7 +45,8 @@ npm install
 3. Setup environment variables
 
 Create a .env file with your backend server URL:
-VITE_SERVER_URL = http://localhost:backend_port
+
+VITE_SERVER_URL = http://localhost:3000
 
 
 5. Run the app
