@@ -22,8 +22,6 @@ A modern real-time chat application built with **React and Socket.IO**, designed
 **Frontend:**  
 React, Vite, Redux, Socket.IO client
 
-**Backend:**  
-Node, Express, MongoDB, Socket.IO, cloudinary
 
 ---
 
