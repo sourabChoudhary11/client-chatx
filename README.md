@@ -55,4 +55,4 @@ Make sure you have Node.js installed.
 
 5. Open in browser
 
-    s http://localhost:5173
+    http://localhost:5173
