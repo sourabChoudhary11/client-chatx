@@ -36,23 +36,23 @@ Make sure you have Node.js installed.
 
 2. Install dependencies
 
-  cd client-chatx
+     cd client-chatx
 
-  npm install
+     npm install
 
 
 3. Setup environment variables
 
-  Create a .env file with your backend server URL:
+    Create a .env file with your backend server URL:
 
-  VITE_SERVER_URL = http://localhost:3000
+     VITE_SERVER_URL = http://localhost:3000
 
 
 5. Run the app
 
-  npm run dev
+    npm run dev
 
 
 5. Open in browser
 
-  http://localhost:5173
+    s http://localhost:5173
