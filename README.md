@@ -37,6 +37,7 @@ git clone https://github.com/sourabChoudhary11/client-chatx.git
 2. Install dependencies
 
 cd client-chatx
+
 npm install
 
 
