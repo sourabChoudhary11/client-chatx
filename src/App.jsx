@@ -1,14 +1,13 @@
 import axios from "axios";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import authSlice from "./store/reducers/auth";
 
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { AppLayoutLoader } from "./components/layout/Loaders";
 import { server } from "./constants/config";
-import { SocketProvider } from "./Socket";
 
 const Home = lazy(() => import("./pages/Home"));
 const Chat = lazy(() => import("./pages/Chat"));
@@ -22,10 +21,10 @@ const UserManagement = lazy(() => import("./pages/admin/UserManagement"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 
 const App = () => {
-
   const dispatch = useDispatch();
   const { user, loader } = useSelector(state => state.auth);
   const { userExists } = authSlice.actions;
+  const toasterId = useRef();
 
   useEffect(() => {
     async function fetchData() {
@@ -36,7 +35,7 @@ const App = () => {
         
         dispatch(userExists(res.data.user));
       } catch (error) {
-        toast(error.response.data.message);
+        toasterId.current = toast(error.response.data.message);
       }
     }
     fetchData();
@@ -57,11 +56,11 @@ const App = () => {
           <Login />
         </ProtectedRoute>} />
 
-        <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/users" element={<UserManagement />} />
-        <Route path="/admin/chats" element={<ChatManagement />} />
-        <Route path="/admin/messages" element={<MessageManagement />} />
+        <Route path="/admin" element={<AdminLogin toasterId={toasterId.current} />} />
+        <Route path="/admin/dashboard" element={<Dashboard toasterId={toasterId.current} />} />
+        <Route path="/admin/users" element={<UserManagement toasterId={toasterId.current} />} />
+        <Route path="/admin/chats" element={<ChatManagement toasterId={toasterId.current} />} />
+        <Route path="/admin/messages" element={<MessageManagement toasterId={toasterId.current} />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

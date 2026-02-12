@@ -118,8 +118,8 @@ const Groups = () => {
         }
 
         {
-          groupName ? (<>
-            <div className='flex justify-center items-center space-x-2'>
+          updatedGroupName ? (<>
+            <div className='flex justify-start items-center space-x-2'>
               {
                 isEdit ? <input value={groupName} onChange={(e) => setGroupName(e.target.value)} type='text' className='border border-gray-300' placeholder='edit group name...' /> : <h3 className='text-2xl'>{updatedGroupName}</h3>
               }
@@ -132,21 +132,20 @@ const Groups = () => {
               }
             </div>
 
-            <div className="w-full p-3">
-
+            <div>
               <h3 className='text-left w-full my-3'>Admin</h3>
+
               {
                 creator &&
-                <div className='flex flex-col items-start w-full'>
+                <div className='flex flex-col justify-start items-start w-full mb-10'>
                   <div className="flex justify-start space-x-2 items-center w-[100%]">
                     <Avatar src={creator.avatar} />
                     <h2>{creator.name}</h2>
                   </div>
                 </div>
               }
-            </div>
 
-            <div>
+
               <h3 className='text-left w-full my-3'>Members</h3>
               {
                 chatDetails.isLoading
@@ -211,7 +210,7 @@ const GroupItem = memo(({ group, chatId }) => {
 
   return <Link onClick={(e) => {
     if (chatId === _id) e.preventDefault();
-  }} to={`/groups?group=${_id}`} className='text-white flex justify-between items-center p-2 hover:bg-gray-300'>
+  }} to={`/groups?group=${_id}`} className='text-white flex justify-between items-center p-2 hover:opacity-50'>
     <AvatarCard avatar={avatar} />
     <p>{name}</p>
   </Link>

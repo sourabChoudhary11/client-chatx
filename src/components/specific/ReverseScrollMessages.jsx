@@ -67,7 +67,7 @@ const ReverseWindowScrollDemo = ({ chatId, user, messages, setMessages, page, se
 
       {
         userTyping &&  <div  className='w-full flex  justify-center items-center space-x-1'>
-          <FaCircle className='animate-ping text-xs text-gray-400' />
+          <FaCircle className='animate-ping text-xs text-gray-700' />
         </div>
       }
       <div ref={typingLoaderRef} />

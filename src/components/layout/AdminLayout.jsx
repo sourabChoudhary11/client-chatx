@@ -5,7 +5,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { MdDashboard, MdGroups, MdManageAccounts, MdMessage } from "react-icons/md";
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { adminNotExists } from '../../store/reducers/auth';
 import { server } from "../../constants/config";
 import toast from "react-hot-toast";
@@ -52,6 +52,7 @@ const AdminLayout = ({ children }) => {
 const Sidebar = () => {
     const dispatch = useDispatch();
     const location = useLocation().pathname;
+    const navigate = useNavigate();
 
     const logoutHandler = async ()=>{
         const res = await axios.get(`${server}/api/v1/admin/logout`, {
@@ -61,6 +62,7 @@ const Sidebar = () => {
         toast.success(res.data.message, {
             duration: 5000
         });
+        navigate("/admin");
     }
 
     return <div className='flex flex-col items-start justify-start space-y-[1rem] pt-0 p-[2rem]'>
